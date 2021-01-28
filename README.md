@@ -2,10 +2,10 @@
 Use this `REAMDE.md` file to describe your final project (as detailed on Canvas).
 
 ## Domain of interest
-Our Domain of interest is **Finance**. 
+Our Domain of interest is **Education**. 
 
 - Why are you interested in this field/domain?
-
+We are interested in this field because we want to see the relationship between education and income. For example, 
 - What other examples of data driven project have you found related to this domain (share at least 3)?
   1. 
   2. 
