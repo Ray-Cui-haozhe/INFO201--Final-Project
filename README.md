@@ -5,7 +5,8 @@ Use this `REAMDE.md` file to describe your final project (as detailed on Canvas)
 Our Domain of interest is **Education**. 
 
 - Why are you interested in this field/domain?
-As International students, we are extremely lucky and we cherish the opportunity to study aboard. But lots of people in the world still don't have such opportunities and resources as we do. So we want to investigate the factors that might affect their right of being educated, as well as the benefits of being educated.
+
+  As International students, we are extremely lucky and we cherish the opportunity to study aboard. But lots of people in the world still don't have such opportunities and resources as we do. So we want to investigate the factors that might affect their right of being educated, as well as the benefits of being educated.
 
 - What other examples of data driven project have you found related to this domain (share at least 3)?
   1. Arts Education Data Project
@@ -17,7 +18,7 @@ As International students, we are extremely lucky and we cherish the opportunity
   3. How does education level affect earnings?
 
 ## Finding Data
-1. Dataset name
+1. Education and Earnings
     - Where did you download the data (e.g., a web URL)?
     
       [OECD.Stat_Education and Earnings](https://stats.oecd.org/index.aspx?r=721880&erroCode=403&lastaction=login_submit)
@@ -47,6 +48,7 @@ As International students, we are extremely lucky and we cherish the opportunity
     
 3. Income Inequality
     - Where did you download the data (e.g., a web URL)?
+    
     [Kaggle](https://www.kaggle.com/psterk/income-inequality?select=combined_final_last_10_years.csv)
     - How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
     
