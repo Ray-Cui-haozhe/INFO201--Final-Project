@@ -49,16 +49,16 @@ Our Domain of interest is **Education**.
 3. Income Inequality
     - Where did you download the data (e.g., a web URL)?
     
-    [Kaggle](https://www.kaggle.com/psterk/income-inequality?select=combined_final_last_10_years.csv)
+      [Kaggle](https://www.kaggle.com/psterk/income-inequality?select=combined_final_last_10_years.csv)
     - How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
     
-    This dataset is composed of data from different sources such as GapMinder and WorldBank. The dataset focuses on income inequality and contains measures such as the Gini Index, and its association with economic metrics such as GDP per capita, investments as a % of GDP, tax revenue as a % of GDP, and EIU democracy index.
+      This dataset is composed of data from different sources such as GapMinder and WorldBank. The dataset focuses on income inequality and contains measures such as the Gini Index, and its association with economic metrics such as GDP per capita, investments as a % of GDP, tax revenue as a % of GDP, and EIU democracy index.
     - How many observations (rows) are in your data?
     
-    There are 1234 rows.
+      There are 1234 rows.
     - How many features (columns) are in the data?
     
-    There are 8 columns.
+      There are 8 columns.
     - What questions (from above) can be answered using the data in this dataset?
     
-    This data can be used to answer the first and second question.
+      This data can be used to answer the first and second question.
