@@ -38,23 +38,23 @@ Our Domain of interest is **Education**.
 2. Dataset name
     - Where did you download the data (e.g., a web URL)?
 
-    [Kaggle](https://www.kaggle.com/andrewmvd/global-education-statistics?select=EdStatsData.csv)
+      [Kaggle](https://www.kaggle.com/andrewmvd/global-education-statistics?select=EdStatsData.csv)
     
     - How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
 
-    This Dataset collected by The World Bank EdStats  describing education access, progression, completion, literacy, teachers, population, and expenditures. Also, the indicators cover the education cycle from pre-primary to vocational and tertiary education and also holds learning outcome data from international and regional learning assessments.
+      This Dataset collected by The World Bank EdStats  describing education access, progression, completion, literacy, teachers, population, and expenditures. Also, the indicators cover the education cycle from pre-primary to vocational and tertiary education and also holds learning outcome data from international and regional learning assessments.
 
     - How many observations (rows) are in your data?
 
-    886930
+      886930
 
     - How many features (columns) are in the data?
 
-    70
+      70
 
     - What questions (from above) can be answered using the data in this dataset?
 
-    This dataset is helpful to answer all three questions above.
+      This dataset is helpful to answer all three questions above.
 
 3. Income Inequality
     - Where did you download the data (e.g., a web URL)?
