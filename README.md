@@ -35,7 +35,7 @@ Our Domain of interest is **Education**.
     - What questions (from above) can be answered using the data in this dataset?
 
       How does education level affect earnings?
-2. Dataset name
+2. World Bank EdStats
     - Where did you download the data (e.g., a web URL)?
 
       [Kaggle](https://www.kaggle.com/andrewmvd/global-education-statistics?select=EdStatsData.csv)
