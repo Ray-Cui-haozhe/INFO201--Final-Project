@@ -22,6 +22,7 @@ Our Domain of interest is **Education**.
     - Where did you download the data (e.g., a web URL)?
 
       [OECD.Stat_Education and Earnings](https://stats.oecd.org/index.aspx?r=721880&erroCode=403&lastaction=login_submit)
+      
       corresponding to EAG_EARNINGS_OECD.csv
     - How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
 
@@ -40,6 +41,7 @@ Our Domain of interest is **Education**.
     - Where did you download the data (e.g., a web URL)?
 
       [Kaggle](https://www.kaggle.com/andrewmvd/global-education-statistics?select=EdStatsData.csv)
+      
       The dataset is larger than 25MB therefore cannot upload to repository
     
     - How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
@@ -62,6 +64,7 @@ Our Domain of interest is **Education**.
     - Where did you download the data (e.g., a web URL)?
 
       [Kaggle](https://www.kaggle.com/psterk/income-inequality?select=combined_final_last_10_years.csv)
+      
       corresponding to combined_final_last_10_years.csv
     - How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
 
