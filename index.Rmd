@@ -6,6 +6,10 @@ The purpose of this assignment is to provide you with the opportunity to explore
 - Using R Markdown to create a report on the web
 - Coding with others
 
+Grant - Summary + 1 chart
+Angel - Introduction + 1 chart
+Ray - Table + 1 chart
+
 # Assignment structure
 
 For this assignment, your team will create a report about one (or more) of the datasets you have selected for your final project. The report will introduce your domain and data to an unfamiliar user, and allow you to set the foundations for your final project. The report must include:
