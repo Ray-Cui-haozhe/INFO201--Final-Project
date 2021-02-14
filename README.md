@@ -9,9 +9,9 @@ Our Domain of interest is **Education**.
   As International students, we are extremely lucky and we cherish the opportunity to study aboard. But lots of people in the world still don't have such opportunities and resources as we do. So we want to investigate the factors that might affect their right of being educated, as well as the benefits of being educated.
 
 - What other examples of data driven project have you found related to this domain (share at least 3)?
-  1. Arts Education Data Project
-  2. The Educational Opportunity Project at Stanford University
-  3. California Arts Education Data Project
+  1. [Arts Education Data Project](https://www.artseddata.org/)
+  2. [The Educational Opportunity Project at Stanford University](The Educational Opportunity Project at Stanford University)
+  3. [California Arts Education Data Project](https://www.lacountyartsedcollective.org/models-resources/resources/california-arts-education-data-project)
 - What data-driven questions do you hope to answer about this domain (share at least 3)?
   1. What's the correlation between GDP/capita and education level?
   2. What other socialeconomic factors (e.g. democracies) might affect education?
