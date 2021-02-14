@@ -1,0 +1,90 @@
+# Overview
+
+The purpose of this assignment is to provide you with the opportunity to explore your final project dataset(s), and become familiar with collaborative coding techniques. By completing the assignment, you'll demonstrate the following skills:
+
+- Performing an exploratory analysis of a dataset
+- Using R Markdown to create a report on the web
+- Coding with others
+
+Grant - Summary + 1 chart
+Angel - Introduction + 1 chart
+Ray - Table + 1 chart
+
+# Assignment structure
+
+For this assignment, your team will create a report about one (or more) of the datasets you have selected for your final project. The report will introduce your domain and data to an unfamiliar user, and allow you to set the foundations for your final project. The report must include:
+
+- An introduction of the problem domain and dataset (feel free to borrow language you used in your brainstorm assignment)
+- A paragraph of summary information, citing at least 5 values calculated from the data
+- A table of  aggregated data (e.g., that has been "grouped" by one of your features)
+- Three charts that display information from the data (what you visualize is up to you).
+
+Unlike other assignments, you'll keep your code organized in multiple different files. This helps keep your project more modular and clear. You'll create six different files for this project:
+
+- An index.Rmd file that renders your report
+- A file that calculates summary information to be included in your report
+- A file that creates a table of summary information to be included in your report
+- A file that creates your first chart
+- A file that creates your second chart
+- A file that creates your third chart
+
+You should save your .R files in the same folder as yourindex.Rmd file. There's more information below about how these files interact. 
+
+# Report Components
+
+As described above, you'll be creating six different files. Because the purpose of this assignment is to practice collaboration, each section should be completed by a different person (and each person must work on at least one file on their own). We'll be checking the commit history to ensure that each section was pushed by a different account. Here is additional information on each section:
+
+## index.Rmd File
+
+In the Markdown document you create, you should run the other scripts to generate the necessary content your report:
+
+- Write an introductory paragraph explaining the domain/data set (feel free to borrow from the project proposal)
+- Write a summary paragraph that includes information calculated by your summary information function
+- Render your table and describe pertinent observations found in it
+- Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart
+
+## Summary Information Script
+
+The first file you should save in your project should store summary information in a list. For example:
+A function that takes in a dataset and returns a list of info about it:
+
+```
+summary_info <- list()
+summary_info$num_observations <- nrow(my_dataframe)
+summary_info$some_max_value <- my_dataframe %>%
+    filter(some_var == max(some_var, na.rm = T)) %>%
+    select(some_label)
+```
+
+The file must compute at least 5 different values from your data that you believe are pertinent to share. 
+
+## Aggregate Table Script
+
+The second file you should save in your project directory should create a table of aggregate information about it. It must perform a groupby operation to show a dimension of the dataset as grouped by a particular feature (column). We expect the included table to:
+
+- Have well formatted (i.e., human readable) column names (so you'll probably have to change them)
+- Only contain relevant information (i.e., only select some columns of interest)
+- Be intentionally sorted in a meaningful way
+- Round any quantitative values so they are displayed in a manner that isn't distracting
+When you display the table in your index.Rmd file, you must also describe why you included the table, and what information it reveals.
+
+## Chart Script(s)
+In your other .R files you create, you should create a visualization of your data. Create a separate .R file for each chart.
+
+Each chart must return a different type of visualization (e.g., you can only create one Scatter Plot,one map, one bar chart, etc.).  Again, in your report you must describe why you included the chart (e.g., what it attempts to seeks to express), and what information it reveals. For each chart, we expect the following:
+
+- Chart types are intentionally selected to reveal particular patterns in the dataset
+- Optimal graphical encodings are selected to present the data in the most interpretable way
+- For two dimensional plots, X, Y axis labels are set with clear human readable titles
+- When appropriate, the chart has a title
+- A legend is present for any color encodings
+- If a legend is present, the legend label has been set to be easily readable
+- If a legend is present, the legend doesn't run off the page (this means you should not be using more than
+~10 colors)
+When you display each chart in your index.Rmd file, you must:
+
+- Describe the purpose of including the chart
+- Describe any notable observations and insights from the chart
+
+# Submission
+As with other assignments, we expect your code to pass all linting tests and use the appropriate packages described throughout the course. As with the previous assignment, you should add and commit your changes using git, and push your assignment to GitHub. You will submit the URL of your repository as your assignment. Only one person will need to submit, because this is configured as a group project. 
