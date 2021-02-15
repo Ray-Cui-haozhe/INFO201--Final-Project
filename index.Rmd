@@ -1,3 +1,17 @@
+---
+title: "Exploratory analysis"
+author: "Angel Zhou"
+date: "2/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(kableExtra)
+
+```
+
 # Overview
 
 The purpose of this assignment is to provide you with the opportunity to explore your final project dataset(s), and become familiar with collaborative coding techniques. By completing the assignment, you'll demonstrate the following skills:
@@ -7,8 +21,8 @@ The purpose of this assignment is to provide you with the opportunity to explore
 - Coding with others
 
 Grant - Summary + 1 chart
-Angel - Introduction + 1 chart
-Ray - Table + 1 chart
+Angel - Table + 1 chart
+Ray - Introduction + 1 chart
 
 # Assignment structure
 
@@ -38,11 +52,35 @@ As described above, you'll be creating six different files. Because the purpose 
 
 In the Markdown document you create, you should run the other scripts to generate the necessary content your report:
 
+#############################################################################
+## Introduction
 - Write an introductory paragraph explaining the domain/data set (feel free to borrow from the project proposal)
+
+## Summary 
 - Write a summary paragraph that includes information calculated by your summary information function
-- Render your table and describe pertinent observations found in it
+
+## Aggregate Table
+describe why you included the table, and what information it reveals.
+
+This following table calculates the average democracy index, income per person, and gini index, by continent, and sorted by gini index. So that we can tell how income inequality is in each continent, and its relationship with democracy and income per capita. The gini index ranges from 0 to 100, for 0 being complete income equality, and 100 being complete income inequality. From the table, Europe has the lowest gini index, which indicates that it is closer to complete income equality, whereas Americas has the maximum gini index, meaning closer to complete income inequality. This finding is to our surprise, and we suppose that it's because the data has included North America and South America in the same category `Americas`. 
+
+```{r, echo=FALSE, message=FALSE}
+source("Aggregate_Table.R")
+kable(value, align = "c", caption = "Average democracy index, income per person, gini index, by continent", padding = 2)
+```
+
+
+## Charts
 - Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart
 
+```{r, echo=FALSE, message=FALSE}
+source("chart1.R")
+chart1
+```
+
+This chart was intended to show the relationship of the gini index between each continent over the years. From what we already know, Europe and Oceania have the lowest gini index, which have relatively more income equality, and the index is very steady over the years. Americas and Africa have the highest gini index, corresponding to income inequality. However, Americas used to have the highest gini index before 2015, and was dropping every year, whereas Africa's gini index was steadily growing every year and started to exceed that of Americas. Asia's gini index was steadily decreasing over the years.
+
+##############################################################################
 ## Summary Information Script
 
 The first file you should save in your project should store summary information in a list. For example:
