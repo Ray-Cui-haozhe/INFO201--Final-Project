@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 library(kableExtra)
+read.csv("combined_final_last_10_years.csv")
 
 ```
 
@@ -54,7 +55,8 @@ In the Markdown document you create, you should run the other scripts to generat
 
 #############################################################################
 ## Introduction
-- Write an introductory paragraph explaining the domain/data set (feel free to borrow from the project proposal)
+- This data frame called "GapMinder - Income Inequality" which record the ten years of continents and countries' EIU Democracy Index, Income per Person, Investment % of GDP, Tax Revenue % of GDP and Gini Index. By analyzing such income equality elements, we can consider several sophisticated questions such as: Is a higher EIU democracy index associated with less income inequality? What is the relationship with EIU and countries' educational level? Do these difference in various countries correlated with their educational level? We want to explore whether such elements in data frame correlated with countries educational level to influence income equality.
+
 
 ## Summary 
 - Write a summary paragraph that includes information calculated by your summary information function
@@ -80,7 +82,25 @@ chart1
 
 This chart was intended to show the relationship of the gini index between each continent over the years. From what we already know, Europe and Oceania have the lowest gini index, which have relatively more income equality, and the index is very steady over the years. Americas and Africa have the highest gini index, corresponding to income inequality. However, Americas used to have the highest gini index before 2015, and was dropping every year, whereas Africa's gini index was steadily growing every year and started to exceed that of Americas. Asia's gini index was steadily decreasing over the years.
 
-##############################################################################
+############################################################################
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+income_equality <- read.csv("combined_final_last_10_years.csv")
+
+demox_mean <-mean(income_equality$demox_eiu)
+demox_sd <- sd(income_equality$demox_eiu)
+
+
+ggplot(data = income_equality, aes(x = demox_eiu)) +
+  geom_blank() +
+  geom_histogram(binwidth = 5, aes(y = ..density..)) +
+  stat_function(fun = dnorm, args = c(mean = demox_mean, sd = demox_sd), 
+                col = "tomato")
+
+```
+This chart is intended to demonstrate what the type of "demox_eiu" data distribution are to show overall trend of countries quality of democracies which indicates some extent of countries educational level. Based on this chat, the overall data trend of "demox_eiu" present a kind of normal distribution but more right skewed which imply that more countries educational level are increase continuously. 
+
+
 ## Summary Information Script
 
 The first file you should save in your project should store summary information in a list. For example:
