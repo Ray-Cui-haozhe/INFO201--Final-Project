@@ -1,18 +1,13 @@
 library(tidyverse)
 income <- read.csv("combined_final_last_10_years.csv")
 
-per_person_income <- income %>%
-  group_by(continent, year) %>% 
-  summarise(income_per_person = mean(income_per_person))
+most_recent <- filter(income, year == 2016)
 
-chart3 = ggplot(data = per_person_income) +
-  geom_line(mapping =  aes(x = year,
-                            y = income_per_person, color = continent)) +
+chart3 = ggplot(data = most_recent, aes(x = continent,
+                                 y = income_per_person,fill = continent)) +
+  geom_boxplot(alpha = 0.9) +
   labs(x = "year", 
-       y = "mean of income per person",
-       title ="mean of income per person for each continents from 2006~2016") +
-  scale_color_brewer(palette = "Set1") +
-  
-  geom_point(mapping =  aes(x = year,
-                           y = income_per_person, color = continent))
+       y = "income per person",
+       title ="income per person for each continents in 2016") +
+  scale_color_brewer(palette = "Set1") 
 

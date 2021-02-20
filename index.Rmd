@@ -76,19 +76,8 @@ This chart was intended to show the relationship of the gini index between each 
 
 ############################################################################
 ```{r, echo=FALSE, message=FALSE}
-library(tidyverse)
-income_equality <- read.csv("combined_final_last_10_years.csv")
-
-demox_mean <-mean(income_equality$demox_eiu)
-demox_sd <- sd(income_equality$demox_eiu)
-
-
-ggplot(data = income_equality, aes(x = demox_eiu)) +
-  geom_blank() +
-  geom_histogram(binwidth = 5, aes(y = ..density..)) +
-  stat_function(fun = dnorm, args = c(mean = demox_mean, sd = demox_sd), 
-                col = "tomato")
-
+source("chart2.R")
+chart2
 ```
 This chart is intended to demonstrate what the type of "demox_eiu" data distribution are to show overall trend of countries quality of democracies which indicates some extent of countries educational level. Based on this chat, the overall data trend of "demox_eiu" present a kind of normal distribution but more right skewed which imply that more countries educational level are increase continuously. 
 
