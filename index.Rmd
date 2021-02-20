@@ -59,7 +59,7 @@ In the Markdown document you create, you should run the other scripts to generat
 
 
 ## Summary 
-- Write a summary paragraph that includes information calculated by your summary information function
+- In this summary, there are in total of 6 calculated information will be included: the mean of income_per person in Americas and Africa continents, the median of income of both continents, and the ratio of income above 10000 in both continents. The reason why we focus on these two continents is that we believe income is strongly related to educational opportunity, and the income_per_person in both continents is the most representative in all continents. The unit for income is in international dollars, fixed 2011 prices. We extract the rows and columns that only show the most recent stats in 2016 for both continents and calculate. Here are the calculated stats: mean: Americas: 17750.62 Africa: 5382.941; median: Americas: 14350 Africa: 2940 ratio of above 10000: Americas: 75% Africa: 23.53%. Though the observation subjects are based on each country of this continent but not the individual people, this information does tell us that overall stats in the Americas are much higher than Africa continent. In reality, "the percentage of the American population age 25 and older that completed high school or higher levels of education reached 90 percent in 2017." this is a quote from US Census. While in Africa, the situation is like this: "Over one-fifth of children between the ages of about 6 and 11 are out of school, followed by one-third of youth between the ages of about 12 and 14. According to UIS data, almost 60% of youth between the ages of about 15 and 17 are not in school. "This is a quote of UNESCO, stands for The United Nations Educational, Scientific and Cultural Organization. We cannot ignore the fact that income does have an important relationship to education since income per person does not only show if someone has enough money to enroll in a school but also the overall continent's economy.  
 
 ## Aggregate Table
 describe why you included the table, and what information it reveals.
@@ -107,11 +107,52 @@ The first file you should save in your project should store summary information 
 A function that takes in a dataset and returns a list of info about it:
 
 ```
-summary_info <- list()
-summary_info$num_observations <- nrow(my_dataframe)
-summary_info$some_max_value <- my_dataframe %>%
-    filter(some_var == max(some_var, na.rm = T)) %>%
-    select(some_label)
+# Code below will generate summary information of the datasets, including 7 calculated observations
+
+library(tidyverse)
+library(dplyr)
+income <- read.csv("combined_final_last_10_years.csv")
+
+# Summary Information Script
+
+# Because there are more problems related to education in Africa, here we will 
+# use Africa and America as the subject we compare and discuss
+
+# We will frist extract rows of continent, year, and income_per_person
+africa_america <- filter(income, continent == "Africa" | continent == "Americas")
+most_recent <- filter(africa_america, year == 2016)
+summary_info <- list(most_recent["continent"], most_recent["year"],most_recent["income_per_person"])
+
+summary_info$num_observations <- nrow(africa_america)
+
+summary_info$median_income_americas <- most_recent %>%
+  filter(continent == "Americas") %>%
+  select(income_per_person)%>%
+  lapply(median)
+
+
+summary_info$mean_income_americas <- most_recent %>%
+  filter(continent == "Americas") %>%
+  select(income_per_person)%>%
+  lapply(mean)
+
+summary_info$mean_income_africa <- most_recent %>%
+  filter(continent == "Africa") %>%
+  select(income_per_person)%>%
+  lapply(mean)
+
+summary_info$median_income_africa <- most_recent %>%
+  filter(continent == "Africa") %>%
+  select(income_per_person)%>%
+  lapply(median)
+
+america <- filter(most_recent,continent == "Americas")
+america_above_10000 <- filter(america, america$income_per_person > 10000)
+summary_info$america_above_10000  <- nrow(america_above_10000) / nrow(america)
+
+africa <- filter(most_recent, continent == "Africa")
+africa_above_10000 <- filter(africa, africa$income_per_person > 10000)
+summary_info$africa_above_10000 <- nrow(africa_above_10000) / nrow(africa)
 ```
 
 The file must compute at least 5 different values from your data that you believe are pertinent to share. 
