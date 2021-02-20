@@ -1,6 +1,6 @@
 ---
 title: "Exploratory analysis"
-author: "Angel Zhou", "Ray Cui", "Chihan Gao"
+author: "Angel Zhou, Ray Cui, Chihan Gao"
 date: "2/19/2021"
 output: html_document
 ---
