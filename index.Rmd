@@ -106,7 +106,9 @@ This chart is intended to demonstrate what the type of "demox_eiu" data distribu
 The first file you should save in your project should store summary information in a list. For example:
 A function that takes in a dataset and returns a list of info about it:
 
-```
+
+```{r setup, include=FALSE}
+
 # Code below will generate summary information of the datasets, including 7 calculated observations
 
 library(tidyverse)
