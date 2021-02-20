@@ -1,5 +1,6 @@
 ---
 title: "Exploratory analysis"
+author: "Angel Zhou"
 date: "2/11/2021"
 output: html_document
 ---
@@ -16,7 +17,35 @@ Grant - Summary + 1 chart
 Angel - Table + 1 chart
 Ray - Introduction + 1 chart
 
+# Assignment structure
 
+For this assignment, your team will create a report about one (or more) of the datasets you have selected for your final project. The report will introduce your domain and data to an unfamiliar user, and allow you to set the foundations for your final project. The report must include:
+
+- An introduction of the problem domain and dataset (feel free to borrow language you used in your brainstorm assignment)
+- A paragraph of summary information, citing at least 5 values calculated from the data
+- A table of  aggregated data (e.g., that has been "grouped" by one of your features)
+- Three charts that display information from the data (what you visualize is up to you).
+
+Unlike other assignments, you'll keep your code organized in multiple different files. This helps keep your project more modular and clear. You'll create six different files for this project:
+
+- An index.Rmd file that renders your report
+- A file that calculates summary information to be included in your report
+- A file that creates a table of summary information to be included in your report
+- A file that creates your first chart
+- A file that creates your second chart
+- A file that creates your third chart
+
+You should save your .R files in the same folder as yourindex.Rmd file. There's more information below about how these files interact. 
+
+# Report Components
+
+As described above, you'll be creating six different files. Because the purpose of this assignment is to practice collaboration, each section should be completed by a different person (and each person must work on at least one file on their own). We'll be checking the commit history to ensure that each section was pushed by a different account. Here is additional information on each section:
+
+## index.Rmd File
+
+In the Markdown document you create, you should run the other scripts to generate the necessary content your report:
+
+#############################################################################
 ## Introduction
 - This data frame called "GapMinder - Income Inequality" which record the ten years of continents and countries' EIU Democracy Index, Income per Person, Investment % of GDP, Tax Revenue % of GDP and Gini Index. By analyzing such income equality elements, we can consider several sophisticated questions such as: Is a higher EIU democracy index associated with less income inequality? What is the relationship with EIU and countries' educational level? Do these difference in various countries correlated with their educational level? We want to explore whether such elements in data frame correlated with countries educational level to influence income equality.
 
@@ -25,6 +54,7 @@ Ray - Introduction + 1 chart
 - In this summary, there are in total of 6 calculated information will be included: the mean of income_per person in Americas and Africa continents, the median of income of both continents, and the ratio of income above 10000 in both continents. The reason why we focus on these two continents is that we believe income is strongly related to educational opportunity, and the income_per_person in both continents is the most representative in all continents. The unit for income is in international dollars, fixed 2011 prices. We extract the rows and columns that only show the most recent stats in 2016 for both continents and calculate. Here are the calculated stats: mean: Americas: 17750.62 Africa: 5382.941; median: Americas: 14350 Africa: 2940 ratio of above 10000: Americas: 75% Africa: 23.53%. Though the observation subjects are based on each country of this continent but not the individual people, this information does tell us that overall stats in the Americas are much higher than Africa continent. In reality, "the percentage of the American population age 25 and older that completed high school or higher levels of education reached 90 percent in 2017." this is a quote from US Census. While in Africa, the situation is like this: "Over one-fifth of children between the ages of about 6 and 11 are out of school, followed by one-third of youth between the ages of about 12 and 14. According to UIS data, almost 60% of youth between the ages of about 15 and 17 are not in school. "This is a quote of UNESCO, stands for The United Nations Educational, Scientific and Cultural Organization. We cannot ignore the fact that income does have an important relationship to education since income per person does not only show if someone has enough money to enroll in a school but also the overall continent's economy.  
 
 ## Aggregate Table
+describe why you included the table, and what information it reveals.
 
 This following table calculates the average democracy index, income per person, and gini index, by continent, and sorted by gini index. So that we can tell how income inequality is in each continent, and its relationship with democracy and income per capita. The gini index ranges from 0 to 100, for 0 being complete income equality, and 100 being complete income inequality. From the table, Europe has the lowest gini index, which indicates that it is closer to complete income equality, whereas Americas has the maximum gini index, meaning closer to complete income inequality. This finding is to our surprise, and we suppose that it's because the data has included North America and South America in the same category `Americas`. 
 
@@ -35,6 +65,7 @@ kable(value, align = "c", caption = "Average democracy index, income per person,
 
 
 ## Charts
+- Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart
 
 ```{r, echo=FALSE, message=FALSE}
 source("chart1.R")
@@ -43,29 +74,61 @@ chart1
 
 This chart was intended to show the relationship of the gini index between each continent over the years. From what we already know, Europe and Oceania have the lowest gini index, which have relatively more income equality, and the index is very steady over the years. Americas and Africa have the highest gini index, corresponding to income inequality. However, Americas used to have the highest gini index before 2015, and was dropping every year, whereas Africa's gini index was steadily growing every year and started to exceed that of Americas. Asia's gini index was steadily decreasing over the years.
 
-
+############################################################################
 ```{r, echo=FALSE, message=FALSE}
 source("chart2.R")
 chart2
 ```
+
 This chart is intended to demonstrate what the type of "demox_eiu" data distribution are to show overall trend of countries quality of democracies which indicates some extent of countries educational level. Based on this chat, the overall data trend of "demox_eiu" present a kind of normal distribution but more right skewed which imply that more countries educational level are increase continuously. 
 
 ```{r, echo=FALSE, message=FALSE}
 source("chart3.R")
 chart3
 ```
-<<<<<<< HEAD
 
-This chart is suppose to show the mean income per person in all the continents from 2006 to 2016. The reason why we include this chart is because it can represent each continents' economy through income each person have in a year. Income is directly related to educational opportunity. Overall, we can see that Africa has the lowest income per person in all continents. Oceania and Europe have the first two highest mean income per person from 2006 to 2016. Both continents have great education systems. One more information we can get is that mean income per person increased in all continents but Africa.
-=======
 This chart is suppose to show a boxplot of the income per person in all the continents in 2016. The reason why we include this chart is because it can represent each continents' economy through income each person have in a year. Income is directly related to educational opportunity. Overall, we can see that Africa has the lowest income per person of all continents. Oceania and Europe have the first two highest mean income per person in 2016. Both continents have great education systems. One more information we can get is that there are not outliers in the boxplot of Oceania.
->>>>>>> 61715f7b3d0772c8a03adb9e7f6ec632d5b4b38c
 
 ## Summary Information Script
 
+The first file you should save in your project should store summary information in a list. For example:
+A function that takes in a dataset and returns a list of info about it:
 
-```{r setup, include=FALSE}
+
+```{r}
 source("summary.R")
 summary
 ```
 
+The file must compute at least 5 different values from your data that you believe are pertinent to share. 
+
+## Aggregate Table Script
+
+The second file you should save in your project directory should create a table of aggregate information about it. It must perform a groupby operation to show a dimension of the dataset as grouped by a particular feature (column). We expect the included table to:
+
+- Have well formatted (i.e., human readable) column names (so you'll probably have to change them)
+- Only contain relevant information (i.e., only select some columns of interest)
+- Be intentionally sorted in a meaningful way
+- Round any quantitative values so they are displayed in a manner that isn't distracting
+When you display the table in your index.Rmd file, you must also describe why you included the table, and what information it reveals.
+
+## Chart Script(s)
+In your other .R files you create, you should create a visualization of your data. Create a separate .R file for each chart.
+
+Each chart must return a different type of visualization (e.g., you can only create one Scatter Plot,one map, one bar chart, etc.).  Again, in your report you must describe why you included the chart (e.g., what it attempts to seeks to express), and what information it reveals. For each chart, we expect the following:
+
+- Chart types are intentionally selected to reveal particular patterns in the dataset
+- Optimal graphical encodings are selected to present the data in the most interpretable way
+- For two dimensional plots, X, Y axis labels are set with clear human readable titles
+- When appropriate, the chart has a title
+- A legend is present for any color encodings
+- If a legend is present, the legend label has been set to be easily readable
+- If a legend is present, the legend doesn't run off the page (this means you should not be using more than
+~10 colors)
+When you display each chart in your index.Rmd file, you must:
+
+- Describe the purpose of including the chart
+- Describe any notable observations and insights from the chart
+
+# Submission
+As with other assignments, we expect your code to pass all linting tests and use the appropriate packages described throughout the course. As with the previous assignment, you should add and commit your changes using git, and push your assignment to GitHub. You will submit the URL of your repository as your assignment. Only one person will need to submit, because this is configured as a group project. 
