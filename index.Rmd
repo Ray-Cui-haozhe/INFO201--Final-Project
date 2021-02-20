@@ -13,32 +13,17 @@ read.csv("combined_final_last_10_years.csv")
 
 ```
 
-Grant - Summary + 1 chart
-
-Angel - Table + 1 chart
-
-Ray - Introduction + 1 chart
-
-- An index.Rmd file that renders your report
-- A file that calculates summary information to be included in your report
-- A file that creates a table of summary information to be included in your report
-- A file that creates your first chart
-- A file that creates your second chart
-- A file that creates your third chart
-
-
-In the Markdown document you create, you should run the other scripts to generate the necessary content your report:
-
 #############################################################################
 ## Introduction
-- This data frame called "GapMinder - Income Inequality" which record the ten years of continents and countries' EIU Democracy Index, Income per Person, Investment % of GDP, Tax Revenue % of GDP and Gini Index. By analyzing such income equality elements, we can consider several sophisticated questions such as: Is a higher EIU democracy index associated with less income inequality? What is the relationship with EIU and countries' educational level? Do these difference in various countries correlated with their educational level? We want to explore whether such elements in data frame correlated with countries educational level to influence income equality.
+
+This data frame called "GapMinder - Income Inequality" which record the ten years of continents and countries' EIU Democracy Index, Income per Person, Investment % of GDP, Tax Revenue % of GDP and Gini Index. By analyzing such income equality elements, we can consider several sophisticated questions such as: Is a higher EIU democracy index associated with less income inequality? What is the relationship with EIU and countries' educational level? Do these difference in various countries correlated with their educational level? We want to explore whether such elements in data frame correlated with countries educational level to influence income equality.
 
 
 ## Summary 
-- In this summary, there are in total of 6 calculated information will be included: the mean of income_per person in Americas and Africa continents, the median of income of both continents, and the ratio of income above 10000 in both continents. The reason why we focus on these two continents is that we believe income is strongly related to educational opportunity, and the income_per_person in both continents is the most representative in all continents. The unit for income is in international dollars, fixed 2011 prices. We extract the rows and columns that only show the most recent stats in 2016 for both continents and calculate. Here are the calculated stats: mean: Americas: 17750.62 Africa: 5382.941; median: Americas: 14350 Africa: 2940 ratio of above 10000: Americas: 75% Africa: 23.53%. Though the observation subjects are based on each country of this continent but not the individual people, this information does tell us that overall stats in the Americas are much higher than Africa continent. In reality, "the percentage of the American population age 25 and older that completed high school or higher levels of education reached 90 percent in 2017." this is a quote from US Census. While in Africa, the situation is like this: "Over one-fifth of children between the ages of about 6 and 11 are out of school, followed by one-third of youth between the ages of about 12 and 14. According to UIS data, almost 60% of youth between the ages of about 15 and 17 are not in school. "This is a quote of UNESCO, stands for The United Nations Educational, Scientific and Cultural Organization. We cannot ignore the fact that income does have an important relationship to education since income per person does not only show if someone has enough money to enroll in a school but also the overall continent's economy.  
+
+In this summary, there are in total of 6 calculated information will be included: the mean of income_per person in Americas and Africa continents, the median of income of both continents, and the ratio of income above 10000 in both continents. The reason why we focus on these two continents is that we believe income is strongly related to educational opportunity, and the income_per_person in both continents is the most representative in all continents. The unit for income is in international dollars, fixed 2011 prices. We extract the rows and columns that only show the most recent stats in 2016 for both continents and calculate. Here are the calculated stats: mean: Americas: 17750.62 Africa: 5382.941; median: Americas: 14350 Africa: 2940 ratio of above 10000: Americas: 75% Africa: 23.53%. Though the observation subjects are based on each country of this continent but not the individual people, this information does tell us that overall stats in the Americas are much higher than Africa continent. In reality, "the percentage of the American population age 25 and older that completed high school or higher levels of education reached 90 percent in 2017." this is a quote from US Census. While in Africa, the situation is like this: "Over one-fifth of children between the ages of about 6 and 11 are out of school, followed by one-third of youth between the ages of about 12 and 14. According to UIS data, almost 60% of youth between the ages of about 15 and 17 are not in school. "This is a quote of UNESCO, stands for The United Nations Educational, Scientific and Cultural Organization. We cannot ignore the fact that income does have an important relationship to education since income per person does not only show if someone has enough money to enroll in a school but also the overall continent's economy.  
 
 ## Aggregate Table
-describe why you included the table, and what information it reveals.
 
 This following table calculates the average democracy index, income per person, and gini index, by continent, and sorted by gini index. So that we can tell how income inequality is in each continent, and its relationship with democracy and income per capita. The gini index ranges from 0 to 100, for 0 being complete income equality, and 100 being complete income inequality. From the table, Europe has the lowest gini index, which indicates that it is closer to complete income equality, whereas Americas has the maximum gini index, meaning closer to complete income inequality. This finding is to our surprise, and we suppose that it's because the data has included North America and South America in the same category `Americas`. 
 
@@ -49,7 +34,7 @@ kable(value, align = "c", caption = "Average democracy index, income per person,
 
 
 ## Charts
-- Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart
+
 
 ```{r, echo=FALSE, message=FALSE}
 source("chart1.R")
@@ -57,6 +42,7 @@ chart1
 ```
 
 This chart was intended to show the relationship of the gini index between each continent over the years. From what we already know, Europe and Oceania have the lowest gini index, which have relatively more income equality, and the index is very steady over the years. Americas and Africa have the highest gini index, corresponding to income inequality. However, Americas used to have the highest gini index before 2015, and was dropping every year, whereas Africa's gini index was steadily growing every year and started to exceed that of Americas. Asia's gini index was steadily decreasing over the years.
+
 
 ############################################################################
 ```{r, echo=FALSE, message=FALSE}
@@ -66,6 +52,7 @@ chart2
 
 This chart is intended to demonstrate what the type of "demox_eiu" data distribution are to show overall trend of countries quality of democracies which indicates some extent of countries educational level. Based on this chat, the overall data trend of "demox_eiu" present a kind of normal distribution but more right skewed which imply that more countries educational level are increase continuously. 
 
+
 ############################################################################
 ```{r, echo=FALSE, message=FALSE}
 source("chart3.R")
@@ -73,13 +60,4 @@ chart3
 ```
 
 This chart is suppose to show a boxplot of the income per person in all the continents in 2016. The reason why we include this chart is because it can represent each continents' economy through income each person have in a year. Income is directly related to educational opportunity. Overall, we can see that Africa has the lowest income per person of all continents. Oceania and Europe have the first two highest mean income per person in 2016. Both continents have great education systems. One more information we can get is that there are not outliers in the boxplot of Oceania.
-
-## Summary Information Script
-
-A function that takes in a dataset and returns a list of info about it:
-
-```{r}
-source("summary.R")
-dim(summary)
-```
 
