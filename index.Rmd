@@ -104,7 +104,7 @@ The first file you should save in your project should store summary information 
 A function that takes in a dataset and returns a list of info about it:
 
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 
 # Code below will generate summary information of the datasets, including 7 calculated observations
 
