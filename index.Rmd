@@ -14,7 +14,9 @@ read.csv("combined_final_last_10_years.csv")
 ```
 
 Grant - Summary + 1 chart
+
 Angel - Table + 1 chart
+
 Ray - Introduction + 1 chart
 
 - An index.Rmd file that renders your report
