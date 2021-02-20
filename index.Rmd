@@ -13,14 +13,6 @@ read.csv("combined_final_last_10_years.csv")
 
 ```
 
-# Overview
-
-The purpose of this assignment is to provide you with the opportunity to explore your final project dataset(s), and become familiar with collaborative coding techniques. By completing the assignment, you'll demonstrate the following skills:
-
-- Performing an exploratory analysis of a dataset
-- Using R Markdown to create a report on the web
-- Coding with others
-
 Grant - Summary + 1 chart
 Angel - Table + 1 chart
 Ray - Introduction + 1 chart
@@ -100,6 +92,11 @@ ggplot(data = income_equality, aes(x = demox_eiu)) +
 ```
 This chart is intended to demonstrate what the type of "demox_eiu" data distribution are to show overall trend of countries quality of democracies which indicates some extent of countries educational level. Based on this chat, the overall data trend of "demox_eiu" present a kind of normal distribution but more right skewed which imply that more countries educational level are increase continuously. 
 
+```{r, echo=FALSE, message=FALSE}
+source("chart3.R")
+chart3
+```
+This chart is suppose to show the mean income per person in all the continents from 2006 to 2016. The reason why we include this chart is because it can represent each continents' economy through income each person have in a year. Income is directly related to educational opportunity. Overall, we can see that Africa has the lowest income per person in all continents. Oceania and Europe have the first two highest mean income per person from 2006 to 2016. Both continents have great education systems. One more information we can get is that mean income per person increased in all continents but Africa.
 
 ## Summary Information Script
 
