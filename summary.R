@@ -21,7 +21,6 @@ summary_info$median_income_americas <- most_recent %>%
   select(income_per_person)%>%
   lapply(median)
 
-
 summary_info$mean_income_americas <- most_recent %>%
   filter(continent == "Americas") %>%
   select(income_per_person)%>%
@@ -44,3 +43,14 @@ summary_info$america_above_10000  <- nrow(america_above_10000) / nrow(america)
 africa <- filter(most_recent, continent == "Africa")
 africa_above_10000 <- filter(africa, africa$income_per_person > 10000)
 summary_info$africa_above_10000 <- nrow(africa_above_10000) / nrow(africa)
+
+summary_info <- summary_info[5:10]
+summary_info <- data.frame(ID = rep(names(summary_info), sapply(summary_info, length)),
+                 Obs = unlist(summary_info))
+summary_info[["Obs"]] <- format(summary_info$Obs, scientific = F)
+summary_info[["Obs"]] <- round(as.numeric(summary_info[["Obs"]]), digits = 2)
+rownames(summary_info) <- summary_info$ID
+summary_info <- subset(summary_info, select = -c(ID))
+summary_info <- t(summary_info)
+write_csv(summary_info,"summary_info.csv")
+
