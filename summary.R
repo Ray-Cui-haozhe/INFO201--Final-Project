@@ -51,6 +51,5 @@ summary_info[["Obs"]] <- format(summary_info$Obs, scientific = F)
 summary_info[["Obs"]] <- round(as.numeric(summary_info[["Obs"]]), digits = 2)
 rownames(summary_info) <- summary_info$ID
 summary_info <- subset(summary_info, select = -c(ID))
-summary_info <- t(summary_info)
 write_csv(summary_info,"summary_info.csv")
 
