@@ -1,20 +1,3 @@
-library(shiny)
-library(ggplot2)
-library(plotly)
-library(tidyverse)
-
-education_earnings <- read.csv("EAG_EARNINGS.csv") %>%
-  filter(Gender == "Total") %>%
-  select(Country, ISC11A.1, EARN_CATEGORY.1, Unit, Reference.Period,Value) %>%
-  rename(Education_level = ISC11A.1,Earning_category = EARN_CATEGORY.1, year = Reference.Period)
-
-education_earnings[education_earnings == "Below upper secondary education"] <- "Below_secondary_education"
-education_earnings[education_earnings == "Upper secondary or post-secondary non-tertiary education"] <- "upper_secondary_education"
-education_earnings[education_earnings == "Bachelor’s or equivalent education"] <- "Bachelor"
-education_earnings[education_earnings == "Master’s, Doctoral or equivalent education"] <- "Master_Doctoral"
-education_earnings[education_earnings == "Tertiary education"] <- "Tertiary_education"
-education_earnings[education_earnings == "Short-cycle tertiary education"] <- "Short_cycle_tertiary_education"
-
 
 # Intro page components ---------------------------------------------------
 intro_page <- tabPanel(
@@ -25,7 +8,7 @@ intro_page <- tabPanel(
 
 # Page 1 component --------------------------------------------------------
 country_input <- selectInput(
-  inputId = "country",
+  inputId = "country_1",
   choices = unique(education_earnings$Country),
   label = "Choose a country of interest"
 )
@@ -45,7 +28,7 @@ capita_input <- selectInput(
               "More than 2.0 times the median")
 )
 
-layout <- sidebarLayout(
+layout_1 <- sidebarLayout(
   sidebarPanel(
     country_input,
     capita_input,
@@ -56,10 +39,9 @@ layout <- sidebarLayout(
     plotlyOutput(outputId = "scatter")
   )
 )
-
 interactive_page1 <- tabPanel(
   "Interactive page 1",
-  layout
+  layout_1
 )
 
 
@@ -76,24 +58,25 @@ factor_input <- radioButtons(
   label = "Choose a variable of interest"
 )
 
-layout <- sidebarLayout(
+layout_2 <- sidebarLayout(
   sidebarPanel(
     country_input,
     factor_input
   ),
   mainPanel(
     plotOutput(outputId = "time_chart")
-    #plotOutput(outputId = "correlation")
+    #plotOutput (outputId = "correlation")
   ))
 
 interactive_page2 <- tabPanel(
   "Interactive page 2",
-  layout
+  layout_2
 )
 
 
 # Page 3 component --------------------------------------------------------
 
+#
 education_input <- radioButtons(
   inputId = "education",
   label = "Choose a variable of the educational level",
@@ -104,10 +87,9 @@ field_input <- radioButtons(
   inputId = "field",
   label = "Choose a varaible of interest",
   choices = c("Life Sciences", "Medical","Technical Degree", "Other")
-  
 )
 
-layout_1 <- sidebarLayout(
+layout_3 <- sidebarLayout(
   sidebarPanel(
     education_input,
     field_input
@@ -121,8 +103,7 @@ layout_1 <- sidebarLayout(
 
 interactive_page3 <- tabPanel(
   "Interactive page 3",
-  layout_1
-  
+  layout_3
 )
 
 
@@ -135,9 +116,9 @@ summary_page <- tabPanel(
 
 ui <- navbarPage(
   "Education Statistics Analysis",
-  intro_page,
-  interactive_page1,
-  interactive_page2,
-  interactive_page3,
-  summary_page
+   intro_page,
+   interactive_page1,
+   interactive_page2,
+   interactive_page3,
+   summary_page
 )
