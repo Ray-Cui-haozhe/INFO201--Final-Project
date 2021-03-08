@@ -1,6 +1,9 @@
 
 # Read data and library ---------------------------------------------------
 library(tidyverse)
+library(shiny)
+library(ggplot2)
+library(plotly)
 
 ed_stats <- read.csv("EdStatsData.csv")
 income_inequality <- read.csv("combined_final_last_10_years.csv")
