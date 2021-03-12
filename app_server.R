@@ -5,12 +5,13 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 
+ed_earning <- read.csv("EAG_EARNINGS.csv", encoding="UTF-8")
 ed_stats <- read.csv("EdStatsData.csv")
 income_inequality <- read.csv("combined_final_last_10_years.csv")
 income_education <- read.csv("WA_Fn-UseC_-HR-Employee-Attrition.csv")
 source("qqnormsim.R")
 
-education_earnings <- read.csv("EAG_EARNINGS.csv") %>%
+education_earnings <- ed_earning %>%
   filter(Gender == "Total") %>%
   select(Country, ISC11A.1, EARN_CATEGORY.1, Unit, Reference.Period,Value) %>%
   rename(Education_level = ISC11A.1,Earning_category = EARN_CATEGORY.1, year = Reference.Period)
@@ -58,6 +59,14 @@ education_earnings[is.na(education_earnings)] <- 0
  #                       "Invest GDP" = "invest_._gdp",
  #                       "Tax GDP" = "tax_._gdp",
  #                       "Gini index" = "gini_index")
+ 
+ combined_df <- rename(combined_df,
+                       "Democracy index" = "demox_eiu",
+                       "Income per person" = "income_per_person",
+                       "Invest GDP" = "invest_._gdp",
+                       "Tax GDP" = "tax_._gdp",
+                       "Gini index" = "gini_index")
+
 
 
 
@@ -86,7 +95,8 @@ server <- function(input, output) {
   output$time_chart <- renderPlot({
     ggplot(data = combined_df %>% filter(Country.Name == input$country)) +
       geom_line(mapping = aes(x = Year , y = Both_sexes)) +
-      geom_point(mapping = aes(x = Year , y = Both_sexes))
+      geom_point(mapping = aes(x = Year , y = Both_sexes)) +
+      labs(y = "Enrollment Rate", title = "Education Enrollment Rate Over Time")
   })
 
   # output$correlation <- renderPlot({
@@ -95,7 +105,8 @@ server <- function(input, output) {
   # })
   output$correlation <- renderPlot({
     ggplot(data = combined_df) +
-      geom_point(mapping = aes_string(y = "Both_sexes", x = input$y_var))
+      geom_point(mapping = aes_string(y = "Both_sexes" , x = combined_df[[input$factor]])) +
+      labs(title = "Correlation with", y = "Enrollment Rate", x = input$factor)
   })
 
 # Question 3 --------------------------------------------------------------
