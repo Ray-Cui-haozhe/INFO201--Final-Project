@@ -5,12 +5,13 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 
+ed_earning <- read.csv("EAG_EARNINGS.csv", encoding="UTF-8")
 ed_stats <- read.csv("EdStatsData.csv")
 income_inequality <- read.csv("combined_final_last_10_years.csv")
 income_education <- read.csv("WA_Fn-UseC_-HR-Employee-Attrition.csv")
 source("qqnormsim.R")
 
-education_earnings <- read.csv("EAG_EARNINGS.csv") %>%
+education_earnings <- ed_earning %>%
   filter(Gender == "Total") %>%
   select(Country, ISC11A.1, EARN_CATEGORY.1, Unit, Reference.Period,Value) %>%
   rename(Education_level = ISC11A.1,Earning_category = EARN_CATEGORY.1, year = Reference.Period)
@@ -52,6 +53,13 @@ education_earnings[is.na(education_earnings)] <- 0
 # Join `net_enrollment_rate` with `income_inequality`
  combined_df <- net_enrollment_rate %>%
   inner_join(income_inequality, by = c("Country.Name" = "country", "Year" = "year"))
+ 
+ combined_df <- rename(combined_df,
+                       "Democracy index" = "demox_eiu",
+                       "Income per person" = "income_per_person",
+                       "Invest GDP" = "invest_._gdp",
+                       "Tax GDP" = "tax_._gdp",
+                       "Gini index" = "gini_index")
 
 
 
@@ -84,8 +92,8 @@ server <- function(input, output) {
   })
 
   output$correlation <- renderPlot({
-    ggplot(data = combined_df %>% filter(Country.Name == input$country)) +
-      geom_point(mapping = aes_string(x = "Both_sexes" , y = input$factor))
+    ggplot(data = combined_df) +
+      geom_point(mapping = aes_string(x = "Both_sexes" , y = combined_df[[input$factor]]))
   })
 
 

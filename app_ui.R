@@ -66,7 +66,7 @@ country_input <- selectInput(
 
 factor_input <- radioButtons(
   inputId = "factor",
-  choices = c("Democracy index", "Income per person", "Invest GDP", "Tax GDP", "Gini index"),
+  choices = colnames(combined_df)[9:13],
   label = "Choose a variable of interest"
 )
 
@@ -76,8 +76,8 @@ layout_2 <- sidebarLayout(
     factor_input
   ),
   mainPanel(
-    plotOutput(outputId = "time_chart")
-    #plotOutput (outputId = "correlation")
+    plotOutput(outputId = "time_chart"),
+    plotOutput (outputId = "correlation")
   ))
 
 interactive_page2 <- tabPanel(
