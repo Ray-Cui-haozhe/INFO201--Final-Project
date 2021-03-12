@@ -52,7 +52,12 @@ education_earnings[is.na(education_earnings)] <- 0
 # Join `net_enrollment_rate` with `income_inequality`
  combined_df <- net_enrollment_rate %>%
   inner_join(income_inequality, by = c("Country.Name" = "country", "Year" = "year"))
-
+ # combined_df <- rename(combined_df,
+ #                       "Democracy index" = "demox_eiu",
+ #                       "Income per person" = "income_per_person",
+ #                       "Invest GDP" = "invest_._gdp",
+ #                       "Tax GDP" = "tax_._gdp",
+ #                       "Gini index" = "gini_index")
 
 
 
@@ -80,14 +85,18 @@ server <- function(input, output) {
 # What other socialeconomic factors (e.g. democracies) might affect education?
   output$time_chart <- renderPlot({
     ggplot(data = combined_df %>% filter(Country.Name == input$country)) +
+      geom_line(mapping = aes(x = Year , y = Both_sexes)) +
       geom_point(mapping = aes(x = Year , y = Both_sexes))
   })
 
+  # output$correlation <- renderPlot({
+  #   ggplot(data = (combined_df %>% filter(Country.Name == input$country))) +
+  #     geom_point(mapping = aes(y = Both_sexes, x = input$y_var))
+  # })
   output$correlation <- renderPlot({
-    ggplot(data = combined_df %>% filter(Country.Name == input$country)) +
-      geom_point(mapping = aes_string(x = "Both_sexes" , y = input$factor))
+    ggplot(data = combined_df) +
+      geom_point(mapping = aes_string(y = "Both_sexes", x = input$y_var))
   })
-
 
 # Question 3 --------------------------------------------------------------
   output$distribution <- renderPlot({
