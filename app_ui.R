@@ -23,33 +23,25 @@ intro_page <- tabPanel(
     tags$li("How does education level affect earnings?")
   ),
   h3("OUR PROJECT | GOALS AND Why We Care"),
-  
-  h3("THE DATA | Global Terrorism Dataset"),
-  p("We used in total of three "),
-  p("This project focuses on data from 2000 to  2017. From this 
-          subset, 111,856 entries were recorded. The main features of interest include the 
-          country in which the attack occurred, the type of attack that was used (i.e.
-          bombing, hostage, kidnapping), the number of deaths from that attack, and the 
-          number of people injured by the attack."),
-  h3("Our Team"),
-  p(strong("Team Member:"), "Angel Zhou, Haozhe(Ray) Cui, Chihan Gao"),
-  p(strong("Class:"), "Info-201: Technical Foundations of Informatics"),
+  p("As International students, we are extremely lucky and we cherish the opportunity to study aboard.
+    But lots of people in the world still don't have such opportunities and resources as we do. 
+    So we want to investigate the factors that might affect their right of being educated, as well as the benefits of being educated."),
+  h3("ABOUT US | Authors and Affiliation"),
+  p(strong("Authors:"), "Rui Cui, Chihan Gao, Angel Zhou"),
+  p(strong("Affiliation:"), "Info-201: Technical Foundations of Informatics"),
   p("The Information School, University of Washington"),
   p("Winter 2021")
   
-  
 ),
 
-  mainPanel(
-    img(src = "https://cdn1.i-scmp.com/sites/default/files/images/methode/2018/01/19/f3008204-fcf9-11e7-b2f7-03450b80c791_image_hires_173553.jpg",
-        width = "95%", height = "95%"),
-    p(""),
-    img(src = "https://www.itseducation.asia/assets/images/article-images/e0c57_photo-1473649085228-583485e6e4d7.jpg",
-        width = "95%", height = "95%"),
-    p(""),
-    img(src = "https://mk0digitallearn7ttjx.kinstacdn.com/wp-content/uploads/2015/03/Education-inequality.pix_.jpg",
-        width = "95%", height = "95%"),
-  )
+  mainPanel(img(src = "https://cdn1.i-scmp.com/sites/default/files/images/methode/2018/01/19/f3008204-fcf9-11e7-b2f7-03450b80c791_image_hires_173553.jpg",
+                width = "95%", height = "95%"),
+            p(""),
+            img(src = "https://www.itseducation.asia/assets/images/article-images/e0c57_photo-1473649085228-583485e6e4d7.jpg",
+                width = "95%", height = "95%"),
+            p(""),
+            img(src = "https://mk0digitallearn7ttjx.kinstacdn.com/wp-content/uploads/2015/03/Education-inequality.pix_.jpg",
+                width = "95%", height = "95%"),)
 )
 
 
@@ -73,12 +65,14 @@ layout_1 <- sidebarLayout(
   sidebarPanel(
     country_input,
     capita_input,
+    color_input
   ),
   
   mainPanel(
     plotlyOutput(outputId = "scatter"),
     
     "
+    
     Question one asks about the relationship between GPA capita and education level, therefore 
     using median household income as our standard to categorize level of income for each country 
     would be our approach. The plot above shows the percentage of people with the chosen level of 
