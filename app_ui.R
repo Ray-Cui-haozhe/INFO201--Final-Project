@@ -1,8 +1,55 @@
 
 # Intro page components ---------------------------------------------------
 intro_page <- tabPanel(
-  "Introduction",
-  titlePanel("Introduction")
+  "Project Overview",
+  sidebarPanel(
+  tags$h1("Relationship between Education inequaility"),
+  tags$p("This interactive application is made to explore the relationship
+         between education and income. Our application is intended for anyone who
+         might be interested in seeing how the eudcational factors influence the 
+         people and countries' income"),
+  tags$br(),
+  h3("BACKGROUD | What is Education inequaility?"),
+  p("Educational inequality is the unequal distribution of academic resources, 
+  including but not limited to; school funding, qualified and experienced teachers, books, and technologies to socially excluded communities. 
+    These communities tend to be historically disadvantaged and oppressed. More times than not, individuals belonging to 
+    these marginalized groups are also denied access to the schools with abundant resources. 
+    Inequality leads to major differences in the educational success or efficiency of these individuals and ultimately suppresses social and economic mobility."),
+  h3("RESEARCH QUESTION | Questions to Consider"),
+  p("The", strong("overarching research question"), "for this project is:"),
+  tags$ul(
+    tags$li("What's the correlation between GDP/captia and education level"),
+    tags$li("What other socialeconomic factors (e.g. democracies) might affect education?"),
+    tags$li("How does education level affect earnings?")
+  ),
+  h3("OUR PROJECT | GOALS AND Why We Care"),
+  
+  h3("THE DATA | Global Terrorism Dataset"),
+  p("We used in total of three "),
+  p("This project focuses on data from 2000 to  2017. From this 
+          subset, 111,856 entries were recorded. The main features of interest include the 
+          country in which the attack occurred, the type of attack that was used (i.e.
+          bombing, hostage, kidnapping), the number of deaths from that attack, and the 
+          number of people injured by the attack."),
+  h3("Our Team"),
+  p(strong("Team Member:"), "Angel Zhou, Haozhe(Ray) Cui, Chihan Gao"),
+  p(strong("Class:"), "Info-201: Technical Foundations of Informatics"),
+  p("The Information School, University of Washington"),
+  p("Winter 2021")
+  
+  
+),
+
+  mainPanel(
+    img(src = "https://cdn1.i-scmp.com/sites/default/files/images/methode/2018/01/19/f3008204-fcf9-11e7-b2f7-03450b80c791_image_hires_173553.jpg",
+        width = "95%", height = "95%"),
+    p(""),
+    img(src = "https://www.itseducation.asia/assets/images/article-images/e0c57_photo-1473649085228-583485e6e4d7.jpg",
+        width = "95%", height = "95%"),
+    p(""),
+    img(src = "https://mk0digitallearn7ttjx.kinstacdn.com/wp-content/uploads/2015/03/Education-inequality.pix_.jpg",
+        width = "95%", height = "95%"),
+  )
 )
 
 
@@ -11,12 +58,6 @@ country_input <- selectInput(
   inputId = "country_1",
   choices = unique(education_earnings$Country),
   label = "Choose a country of interest"
-)
-
-color_input <- selectInput(
-  inputId = "color", 
-  choices = c("red", "blue", "purple"), 
-  label = "Choose a color"
 )
 
 capita_input <- selectInput(
@@ -32,14 +73,12 @@ layout_1 <- sidebarLayout(
   sidebarPanel(
     country_input,
     capita_input,
-    color_input
   ),
   
   mainPanel(
     plotlyOutput(outputId = "scatter"),
     
     "
-    
     Question one asks about the relationship between GPA capita and education level, therefore 
     using median household income as our standard to categorize level of income for each country 
     would be our approach. The plot above shows the percentage of people with the chosen level of 
@@ -107,7 +146,7 @@ interactive_page2 <- tabPanel(
 education_input <- radioButtons(
   inputId = "education",
   label = "Choose a variable of the educational level",
-  choices = c("1", "2","3","4","5")
+  choices = c("Below College" = "1", "College"= "2","Bechelor" = "3","Master" = "4","Doctor" = "5")
 )
 
 field_input <- radioButtons(
@@ -162,10 +201,11 @@ summary_page <- tabPanel(
 
 
 ui <- navbarPage(
+  theme = shinytheme("superhero"),
   "Education Statistics Analysis",
-   intro_page,
-   interactive_page1,
-   interactive_page2,
-   interactive_page3,
-   summary_page
+  intro_page,
+  interactive_page1,
+  interactive_page2,
+  interactive_page3,
+  summary_page
 )

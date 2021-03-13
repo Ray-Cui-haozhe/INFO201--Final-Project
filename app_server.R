@@ -4,6 +4,8 @@ library(tidyverse)
 library(shiny)
 library(ggplot2)
 library(plotly)
+library(shinythemes)
+
 
 ed_earning <- read.csv("EAG_EARNINGS.csv", encoding="UTF-8")
 ed_stats <- read.csv("EdStatsData.csv")
@@ -18,8 +20,8 @@ education_earnings <- ed_earning %>%
 
 education_earnings[education_earnings == "Below upper secondary education"] <- "Below_secondary_education"
 education_earnings[education_earnings == "Upper secondary or post-secondary non-tertiary education"] <- "upper_secondary_education"
-education_earnings[education_earnings == "Bachelor’s or equivalent education"] <- "Bachelor"
-education_earnings[education_earnings == "Master’s, Doctoral or equivalent education"] <- "Master_Doctoral"
+education_earnings[education_earnings == "Bachelor's or equivalent education"] <- "Bachelor"
+education_earnings[education_earnings == "Master's, Doctoral or equivalent education"] <- "Master_Doctoral"
 education_earnings[education_earnings == "Tertiary education"] <- "Tertiary_education"
 education_earnings[education_earnings == "Short-cycle tertiary education"] <- "Short_cycle_tertiary_education"
 
@@ -71,7 +73,7 @@ server <- function(input, output) {
     
     my_plot <- ggplot(data = edu_gdp) +
       geom_histogram(mapping = aes_string(x = "Education_level" , y = "Value"), 
-                     color = input$color, fill = input$color, stat = "identity")+
+                     color = "royalblue3", fill = "royalblue3", stat = "identity")+
       labs(title = "Education and Earning for each education level" , x = "Education Level", y = "Percentage of People in the education level, percentage")+
       coord_flip()
     # my_plot <- my_plot + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
