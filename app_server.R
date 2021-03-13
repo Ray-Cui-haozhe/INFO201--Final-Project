@@ -27,47 +27,37 @@ education_earnings[is.na(education_earnings)] <- 0
 
 # # Extract net_enrollment_rate for male, female, both sexes, and the
 # # gender parity index for countries with available data
- net_enrollment_rate <- ed_stats %>%
-  filter(Indicator.Code == c("SE.PRM.TENR",
-                    "SE.PRM.TENR.FE",
-                    "UIS.NERA.1.GPI",
-                    "SE.PRM.TENR.MA"))
- net_enrollment_rate$Indicator.Code <- NULL
- net_enrollment_rate <- net_enrollment_rate %>%
+net_enrollment_rate <- ed_stats %>%
+  filter(Indicator.Code == "BAR.NOED.15UP.ZS"|
+           Indicator.Code == "BAR.NOED.25UP.ZS"|
+           Indicator.Code == "BAR.NOED.75UP.ZS")
+net_enrollment_rate$Indicator.Name <- NULL
+net_enrollment_rate <- net_enrollment_rate %>%
   pivot_longer(cols = starts_with("X"),
-                names_to = "Year",
-                names_prefix = "X",
-                values_to = "Rate",
+               names_to = "Year",
+               names_prefix = "X",
+               values_to = "Rate",
                values_drop_na = TRUE)
- net_enrollment_rate <- net_enrollment_rate %>%
-   pivot_wider(names_from = Indicator.Name,
-               values_from = Rate)
- net_enrollment_rate$Year <- as.integer(net_enrollment_rate$Year)
- net_enrollment_rate <- rename(net_enrollment_rate,
-                              "Both_sexes" = "Adjusted net enrolment rate, primary, both sexes (%)",
-                               "Female" = "Adjusted net enrolment rate, primary, female (%)",
-                               "GPI" = "Adjusted net enrolment rate, primary, gender parity index (GPI)",
-                              "Male" = "Adjusted net enrolment rate, primary, male (%)")
+net_enrollment_rate <- net_enrollment_rate %>%
+  pivot_wider(names_from = Indicator.Code,
+              values_from = Rate)
+net_enrollment_rate$Year <- as.integer(net_enrollment_rate$Year)
+net_enrollment_rate <- rename(net_enrollment_rate,
+                              "Age 15-24" = "BAR.NOED.15UP.ZS",
+                              "Age 25-74" = "BAR.NOED.25UP.ZS",
+                              "Age 75+" = "BAR.NOED.75UP.ZS")
 
 
 # Join `net_enrollment_rate` with `income_inequality`
- combined_df <- net_enrollment_rate %>%
-  inner_join(income_inequality, by = c("Country.Name" = "country", "Year" = "year"))
- # combined_df <- rename(combined_df,
- #                       "Democracy index" = "demox_eiu",
- #                       "Income per person" = "income_per_person",
- #                       "Invest GDP" = "invest_._gdp",
- #                       "Tax GDP" = "tax_._gdp",
- #                       "Gini index" = "gini_index")
- 
- combined_df <- rename(combined_df,
-                       "Democracy index" = "demox_eiu",
-                       "Income per person" = "income_per_person",
-                       "Invest GDP" = "invest_._gdp",
-                       "Tax GDP" = "tax_._gdp",
-                       "Gini index" = "gini_index")
+combined_df <- net_enrollment_rate %>%
+  left_join(income_inequality, by = c("Country.Name" = "country", "Year" = "year"))
 
-
+combined_df <- rename(combined_df,
+                      "Democracy index" = "demox_eiu",
+                      "Income per person" = "income_per_person",
+                      "Invest GDP" = "invest_._gdp",
+                      "Tax GDP" = "tax_._gdp",
+                      "Gini index" = "gini_index")
 
 
 
@@ -91,22 +81,22 @@ server <- function(input, output) {
 
 
 # Question 2 --------------------------------------------------------------
-# What other socialeconomic factors (e.g. democracies) might affect education?
+  # What other socialeconomic factors (e.g. democracies) might affect education?
+  
   output$time_chart <- renderPlot({
-    ggplot(data = combined_df %>% filter(Country.Name == input$country)) +
-      geom_line(mapping = aes(x = Year , y = Both_sexes)) +
-      geom_point(mapping = aes(x = Year , y = Both_sexes)) +
-      labs(y = "Enrollment Rate", title = "Education Enrollment Rate Over Time")
+    df <-  combined_df %>% filter(Country.Name == input$country)
+    ggplot(data = df) +
+      geom_line(mapping = aes_string(x = "Year" , y = df[[input$age]])) +
+      geom_point(mapping = aes_string(x = "Year" , y = df[[input$age]])) +
+      labs(y = "No Education Rate", title = "No Education Rate Over Time")
   })
-
-  # output$correlation <- renderPlot({
-  #   ggplot(data = (combined_df %>% filter(Country.Name == input$country))) +
-  #     geom_point(mapping = aes(y = Both_sexes, x = input$y_var))
-  # })
+  
   output$correlation <- renderPlot({
+    linear_model <- lm(combined_df[[input$age]] ~ combined_df[[input$factor]])
     ggplot(data = combined_df) +
-      geom_point(mapping = aes_string(y = "Both_sexes" , x = combined_df[[input$factor]])) +
-      labs(title = "Correlation with", y = "Enrollment Rate", x = input$factor)
+      geom_point(mapping = aes_string(y = combined_df[[input$age]] , x = combined_df[[input$factor]])) +
+      geom_abline(slope = coef(linear_model)[[2]], intercept = coef(linear_model)[[1]]) +
+      labs(title = "Correlation of No Education Rate with Socialeconomic Factor", y = "No Education Rate", x = input$factor)
   })
 
 # Question 3 --------------------------------------------------------------

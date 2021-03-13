@@ -66,13 +66,20 @@ country_input <- selectInput(
 
 factor_input <- radioButtons(
   inputId = "factor",
-  choices = colnames(combined_df)[9:13],
-  label = "Choose a variable of interest"
+  choices = colnames(combined_df)[8:12],
+  label = "Choose a social economic factor of interest"
+)
+
+age_input <- radioButtons(
+  inputId = "age",
+  choices = colnames(combined_df)[4:6],
+  label = "Choose an age range"
 )
 
 layout_2 <- sidebarLayout(
   sidebarPanel(
     country_input,
+    age_input
   ),
   mainPanel(
     plotOutput(outputId = "time_chart"),
@@ -80,7 +87,8 @@ layout_2 <- sidebarLayout(
 
 layout_2a <- sidebarLayout(
   sidebarPanel(
-    factor_input
+    factor_input,
+    age_input
   ),
   mainPanel(
     plotOutput (outputId = "correlation")
