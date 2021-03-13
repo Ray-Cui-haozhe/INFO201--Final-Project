@@ -74,7 +74,7 @@ server <- function(input, output) {
     my_plot <- ggplot(data = edu_gdp) +
       geom_histogram(mapping = aes_string(x = "Education_level" , y = "Value"), 
                      color = "royalblue3", fill = "royalblue3", stat = "identity")+
-      labs(title = "Education and Earning for each education level" , x = "Education Level", y = "Percentage of People in the education level, percentage")+
+      labs(title = "Household Earning for each education level" , x = "Education Level", y = "Percentage of People in the education level, percentage")+
       coord_flip()
     # my_plot <- my_plot + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
     ggplotly(my_plot) 
@@ -83,22 +83,23 @@ server <- function(input, output) {
 
 
 # Question 2 --------------------------------------------------------------
-  # What other socialeconomic factors (e.g. democracies) might affect education?
-  
-  output$time_chart <- renderPlot({
+
+  output$time_chart <- renderPlotly({
     df <-  combined_df %>% filter(Country.Name == input$country)
-    ggplot(data = df) +
+    time_plot <- ggplot(data = df) +
       geom_line(mapping = aes_string(x = "Year" , y = df[[input$age]])) +
       geom_point(mapping = aes_string(x = "Year" , y = df[[input$age]])) +
       labs(y = "No Education Rate", title = "No Education Rate Over Time")
+    ggplotly(time_plot)
   })
   
-  output$correlation <- renderPlot({
+  output$correlation <- renderPlotly({
     linear_model <- lm(combined_df[[input$age]] ~ combined_df[[input$factor]])
-    ggplot(data = combined_df) +
+    correlation_plot <- ggplot(data = combined_df) +
       geom_point(mapping = aes_string(y = combined_df[[input$age]] , x = combined_df[[input$factor]])) +
       geom_abline(slope = coef(linear_model)[[2]], intercept = coef(linear_model)[[1]]) +
       labs(title = "Correlation of No Education Rate with Socialeconomic Factor", y = "No Education Rate", x = input$factor)
+    ggplotly(correlation_plot)
   })
 
 # Question 3 --------------------------------------------------------------
