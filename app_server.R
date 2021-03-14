@@ -2,13 +2,12 @@
 # Read data and library ---------------------------------------------------
 library(tidyverse)
 library(shiny)
-library(ggplot2)
 library(plotly)
 library(shinythemes)
 
 
 ed_earning <- read.csv("EAG_EARNINGS.csv", encoding="UTF-8")
-ed_stats <- read.csv("EdStatsData.csv")
+net_enrollment_rate <- read_csv("net_enrollment_rate.csv")
 income_inequality <- read.csv("combined_final_last_10_years.csv")
 income_education <- read.csv("WA_Fn-UseC_-HR-Employee-Attrition.csv")
 source("qqnormsim.R")
@@ -27,28 +26,6 @@ education_earnings[education_earnings == "Short-cycle tertiary education"] <- "S
 
 education_earnings[is.na(education_earnings)] <- 0
 
-# # Extract net_enrollment_rate for male, female, both sexes, and the
-# # gender parity index for countries with available data
-net_enrollment_rate <- ed_stats %>%
-  filter(Indicator.Code == "BAR.NOED.15UP.ZS"|
-           Indicator.Code == "BAR.NOED.25UP.ZS"|
-           Indicator.Code == "BAR.NOED.75UP.ZS")
-net_enrollment_rate$Indicator.Name <- NULL
-net_enrollment_rate <- net_enrollment_rate %>%
-  pivot_longer(cols = starts_with("X"),
-               names_to = "Year",
-               names_prefix = "X",
-               values_to = "Rate",
-               values_drop_na = TRUE)
-net_enrollment_rate <- net_enrollment_rate %>%
-  pivot_wider(names_from = Indicator.Code,
-              values_from = Rate)
-net_enrollment_rate$Year <- as.integer(net_enrollment_rate$Year)
-net_enrollment_rate <- rename(net_enrollment_rate,
-                              "Age 15-24" = "BAR.NOED.15UP.ZS",
-                              "Age 25-74" = "BAR.NOED.25UP.ZS",
-                              "Age 75+" = "BAR.NOED.75UP.ZS")
-
 
 # Join `net_enrollment_rate` with `income_inequality`
 combined_df <- net_enrollment_rate %>%
@@ -60,8 +37,6 @@ combined_df <- rename(combined_df,
                       "Invest GDP" = "invest_._gdp",
                       "Tax GDP" = "tax_._gdp",
                       "Gini index" = "gini_index")
-
-
 
 
 server <- function(input, output) {

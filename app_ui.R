@@ -1,3 +1,9 @@
+library(tidyverse)
+library(shiny)
+library(plotly)
+library(shinythemes)
+
+source("app_server.R")
 
 # Intro page components ---------------------------------------------------
 intro_page <- tabPanel(
@@ -226,6 +232,7 @@ conclusion_1 <- sidebarLayout(
   mainPanel(
     img(src = "https://webfoundation.org/docs/2017/02/WF_Strategy_Cover.jpg",
         width = "95%", height = "95%"),
+    p(""),
     img(src = "https://centreforglobalequality.org/wp-content/uploads/2015/09/global-citizen-e1454664343282.jpg",
         width = "95%", height = "95%"),
   )
