@@ -13,9 +13,10 @@ income_education <- read.csv("WA_Fn-UseC_-HR-Employee-Attrition.csv")
 source("qqnormsim.R")
 
 education_earnings <- ed_earning %>%
-  filter(Gender == "Total") %>%
-  select(Country, ISC11A.1, EARN_CATEGORY.1, Unit, Reference.Period,Value) %>%
+  filter(Gender == "Total" & Reference.Period == 2018)%>%
+  select(Country, ISC11A.1, EARN_CATEGORY.1, Unit, Reference.Period,Value)%>%
   rename(Education_level = ISC11A.1,Earning_category = EARN_CATEGORY.1, year = Reference.Period)
+  
 
 education_earnings[education_earnings == "Below upper secondary education"] <- "Below_secondary_education"
 education_earnings[education_earnings == "Upper secondary or post-secondary non-tertiary education"] <- "upper_secondary_education"
@@ -44,7 +45,7 @@ server <- function(input, output) {
 # Question 1 --------------------------------------------------------------
   output$scatter <- renderPlotly({
     edu_gdp <- education_earnings %>%
-      filter(Country == input$country_1 & year == 2018 & Earning_category == input$capita)
+      filter(Country == input$country_1 & Earning_category == input$capita)
     
     my_plot <- ggplot(data = edu_gdp) +
       geom_histogram(mapping = aes_string(x = "Education_level" , y = "Value"), 
