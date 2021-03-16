@@ -28,6 +28,28 @@ intro_page <- tabPanel(
       tags$li("What other socialeconomic factors (e.g. democracies) might affect education?"),
       tags$li("How does education level affect earnings?")
     ),
+    h3("OUR DATASETS | What about them?"),
+    p(strong("EAG_EARNINGS.csv")),
+    p("The dataset we use to answer the first question is EAG_EARNINGS.csv which is 
+      from the OECD website. This indicator presents internationally comparable data on education and earnings, 
+      by educational attainment, age and gender as published in OECD Education at a Glance 2020. 
+      The data is collected by Markus Schwabe and Simon Normandeau."),
+    p(strong("EdStats")),
+    p("This Dataset collected by The World Bank EdStats describing education access, progression, completion, 
+      literacy, teachers, population, and expenditures. Also, the indicators cover the education cycle from 
+      pre-primary to vocational and tertiary education and also holds learning outcome data from international 
+      and regional learning assessments."),
+    p("This dataset is larger than 25MB therefore we cannot upload to github"),
+    p(strong("corresponding to combined_final_last_10_years.csv")),
+    p("This dataset is composed of data from different sources such as GapMinder and WorldBank. The dataset 
+      focuses on income inequality and contains measures such as the Gini Index, and its association with economic metrics 
+      such as GDP per capita, investments as a % of GDP, tax revenue as a % of GDP, and EIU democracy index."),
+    p(strong("WA_Fn-UseC_-HR-Employee-Attrition.csv")),
+    p("Finally, the dataset we leveraged throughout this project is called “IBM HR Analytics Employee Attrition & 
+      Performance” from Kaggle.com. It lists seven factors that could influence employees’ performance. 
+      By analyzing the relationship between people’s monthly income and education level in various aspects, 
+      we want to explore whether they demonstrate the normal distribution that higher education level means 
+      more income to support the importance of education not only could increase people’s life quality countries’ overall economic level."),
     h3("OUR PROJECT | GOALS AND Why We Care"),
     p("As International students, we are extremely lucky and we cherish the opportunity to study aboard. 
     But lots of people in the world still don't have such opportunities and resources as we do. 
@@ -74,7 +96,7 @@ capita_input <- selectInput(
 
 layout_1 <- sidebarLayout(
   sidebarPanel(
-    h3("Household Earning For Each Education Level"),
+    h2("Household Earning For Each Education Level"),
     h3("Question:"),
     p(""),
     tags$li("What's the correlation between GDP/captia and education level"),
@@ -168,17 +190,20 @@ field_input <- radioButtons(
 
 layout_3 <- sidebarLayout(
   sidebarPanel(
+    h2("Distribution Of People's Education Level and Monthly Income"),
     h3("Question"),
     tags$li("what the distribution between people's educational level and monthly income in differernt areas?"),
-    tags$li("It is demonstrate the normal distribution?"),
+    tags$li("Is it demonstrate the normal distribution?"),
+    tags$br(),
     education_input,
     field_input
   ),
+
   mainPanel(
     plotOutput(outputId = "distribution"),
     plotOutput(outputId = "QQplot")
-  ))
-
+  )
+)
 
 interactive_page3 <- tabPanel(
   strong("Education and Income"),
